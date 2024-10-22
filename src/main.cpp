@@ -275,7 +275,6 @@ void SnakeGame::Play(){
     nodelay(stdscr, TRUE);
     curs_set(0);
 
-    int ReactionSpan = 50;
     char PlayerInput = 'd';
     bool GameOn = true;
 

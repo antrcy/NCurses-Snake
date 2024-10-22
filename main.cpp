@@ -184,8 +184,10 @@ void SnakeGame::UpdateSnake(char UserInput, bool& GameOn){
             break;
         }
 
-        default:
+        default:{
+            SnakeGame::UpdateSnake(SnakeDirection, GameOn);
             break;
+        }
     }
 
     if (TriggerAddCell()){

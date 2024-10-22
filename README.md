@@ -7,7 +7,7 @@ Use ZQSD to control the snake. Eat the eggs 'O' to get bigger. If the snake bite
 An egg 'O' appears at the tip of the snake's tail (not very healthy) everytime it eats an egg. The snake speeds when it eats.
 
 ## How to play
-Linux only, requires ncurses.
+Linux only, requires ncurses. `sudo apt install ncurses-dev` should work.
 ```
 cd src
 g++ main.cpp -lncurses -o snake

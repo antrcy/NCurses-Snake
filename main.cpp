@@ -3,6 +3,7 @@
 #include <chrono>
 #include <ncurses.h>
 #include <thread>
+#define MAX(a, b) (a < b) ? b : a
 
 bool KeyPressed(char& c){
     c = getch();
@@ -38,6 +39,7 @@ private:
     SnakeCell* SnakeHead;
     SnakeCell* SnakeTail;
     int SnakeSize;
+    int SnakeSpeed;
     char SnakeDirection;
 
         // Plateau
@@ -68,6 +70,7 @@ public:
         SnakeFood[0] = 10; SnakeFood[1] = 10;
         SnakeSize = 3;
         SnakeDirection = 'd';
+        SnakeSpeed = 30;
 
         SnakeCell* C0 = new SnakeCell;
         SnakeCell* C1 = new SnakeCell;
@@ -235,6 +238,7 @@ bool SnakeGame::TriggerAddCell(){
     // Checks whether a new cell must be added
 
     if (SnakeHead->x == SnakeFood[0] && SnakeHead->y == SnakeFood[1]){
+        SnakeGame::SnakeSpeed = MAX(SnakeGame::SnakeSpeed - 1, 5);
         return true;
     }
     else {
@@ -287,10 +291,9 @@ void SnakeGame::Play(){
 
         UpdateFrame();
         char Input;
-        int SnakeSpeed = 15;
         int ElapsedTime = 0;
 
-        while (KeyPressed(Input) == false && ElapsedTime != SnakeSpeed){
+        while (KeyPressed(Input) == false && ElapsedTime != SnakeGame::SnakeSpeed){
             std::this_thread::sleep_for(10ms);
             ElapsedTime ++;
         }
@@ -298,6 +301,7 @@ void SnakeGame::Play(){
         if (Input == -1) {
             PlayerInput = SnakeDirection;
         }
+
         else{
             PlayerInput = Input;
         }
